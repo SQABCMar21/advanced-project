@@ -192,4 +192,6 @@ Temporary Items
 
 # Optimized
 test-output
-logs
+logs/*.log
+
+
