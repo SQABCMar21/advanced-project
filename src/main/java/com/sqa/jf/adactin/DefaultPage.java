@@ -7,6 +7,9 @@
  */
 package com.sqa.jf.adactin;
 
+import java.text.*;
+import java.util.*;
+
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.*;
@@ -33,6 +36,19 @@ public class DefaultPage extends PageFactory {
 
 	private static Logger logger;
 
+	public static String changeDate(String date, int days)
+			throws ParseException {
+		String newDate;
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat df = DateFormat.getDateInstance();
+		Calendar calendar = Calendar.getInstance();
+		Date inputDate = dateFormat.parse(date);
+		calendar.setTime(inputDate);
+		calendar.add(Calendar.DATE, days);
+		newDate = dateFormat.format(calendar.getTime());
+		return newDate;
+	}
+
 	/**
 	 * @return the baseURL
 	 */
@@ -58,7 +74,8 @@ public class DefaultPage extends PageFactory {
 		PageFactory.initElements(getDriver(), this);
 	}
 
-	public DefaultPage(WebDriver driver) {
+	public DefaultPage(WebDriver driver, String baseURL) {
+		this.baseURL = baseURL;
 		setDriver(driver);
 		PageFactory.initElements(getDriver(), this);
 	}
@@ -112,4 +129,14 @@ public class DefaultPage extends PageFactory {
 			DefaultPage.driver = driver;
 		}
 	}
+	// private int changeDate(String date, int daysFromToday) {
+	// SimpleDateFormat checkIn = new SimpleDateFormat("dd/MM/yyyy");
+	// Calendar c = Calendar.getInstance();
+	// Date inputDate = this.dateFormat.parse(date);
+	// c.setTime(inputDate);
+	// c.add(Calendar.DATE, daysFromToday);
+	// String dayToday = checkIn.format(c.getTime());
+	// System.out.println(dayToday);
+	// return daysFromToday;
+	// }
 }

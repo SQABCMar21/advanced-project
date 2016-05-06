@@ -40,7 +40,7 @@ public class LoginPage extends DefaultPage {
 	}
 
 	public LoginPage(WebDriver driver) {
-		super(driver);
+		super(driver, getBaseURL());
 		PageFactory.initElements(getDriver(), this);
 	}
 
