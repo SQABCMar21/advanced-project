@@ -56,7 +56,9 @@
 						<password>${password}</password>
 					</systemPropertyVariables>
 					<suiteXmlFiles>
-						<suiteXmlFile>adactin-suite.xml</suiteXmlFile>
+						<suiteXmlFile>firefox-adactin-suite.xml</suiteXmlFile>
+						<suiteXmlFile>chrome-adactin-suite.xml</suiteXmlFile>
+						<suiteXmlFile>ie-adactin-suite.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
