@@ -6,22 +6,33 @@
 	<version>1.0</version>
 	<name>Adactin Project</name>
 	<description>Adactin Hotel Management Project</description>
+	<properties>
+		<!-- Encodings -->
+		<!-- Dependency Versions -->
+		<selenium.version>2.53.0</selenium.version>
+		<testng.version>6.8.21</testng.version>
+		<jdk.version>1.7</jdk.version>
+		<log4j.version>1.2.17</log4j.version>
+		<!-- My Properties -->
+		<username>jean</username>
+		<password>sqa888</password>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.8.21</version>
+			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>2.53.0</version>
+			<version>${selenium.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<version>${log4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -31,8 +42,39 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<systemPropertyVariables>
+						<username>${username}</username>
+						<password>${password}</password>
+					</systemPropertyVariables>
+					<suiteXmlFiles>
+						<suiteXmlFile>adactin-suite.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<!-- <systemProperties>
+						<systemProperty>
+							<name>username</name>
+							<value>${username}</value>
+						</systemProperty>
+						<systemProperty>
+							<name>password</name>
+							<value>${password}</value>
+						</systemProperty>
+					</systemProperties> -->
 				</configuration>
 			</plugin>
 		</plugins>
