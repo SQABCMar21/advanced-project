@@ -27,6 +27,30 @@ import com.sqa.jf.util.helpers.exceptions.*;
  */
 public class SearchPage extends DefaultPage {
 
+	/**
+	 * @param location
+	 * @param hotel
+	 * @param roomType
+	 * @param numRooms
+	 * @param checkIn
+	 * @param adultsInRoom
+	 * @param childrenInRoom
+	 * @param checkOut
+	 */
+	public static SelectPage selectSearchHotelOptions(SearchPage searchPage,
+			String location, String hotel, String roomType, String numRooms,
+			String checkIn, String adultsInRoom, String childrenInRoom,
+			String checkOut) {
+		searchPage.chooseLocation(location).chooseHotel(hotel)
+				.chooseRoomType(roomType).chooseNumOfRooms(numRooms)
+				.chooseCheckInDate(checkIn).chooseCheckOutDate(checkOut)
+				.chooseNumAdultsInRoom(adultsInRoom)
+				.chooseNumChildrenInRoom(childrenInRoom)
+				// Submit
+				.submit();
+		return new SelectPage();
+	}
+
 	@FindBy(id = "adult_room")
 	private WebElement adultsPerRoom;
 

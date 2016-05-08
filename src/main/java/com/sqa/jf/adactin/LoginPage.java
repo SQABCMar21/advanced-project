@@ -23,6 +23,16 @@ import org.openqa.selenium.support.*;
  */
 public class LoginPage extends DefaultPage {
 
+	/**
+	 * @return
+	 */
+	public static SearchPage logInToAdactin(String username, String password) {
+		LoginPage loginPage = new LoginPage();
+		loginPage.getDriver().get(loginPage.getBaseURL());
+		return loginPage.enterUsername(username).enterPassword(password)
+				.login();
+	}
+
 	@FindBy(id = "login")
 	private WebElement loginBtn;
 
@@ -36,6 +46,7 @@ public class LoginPage extends DefaultPage {
 	private WebElement welcomeElement;
 
 	public LoginPage() {
+		super();
 		PageFactory.initElements(getDriver(), this);
 	}
 
@@ -44,17 +55,17 @@ public class LoginPage extends DefaultPage {
 		PageFactory.initElements(getDriver(), this);
 	}
 
-	public LoginPage enterPassword(String password) {
+	private LoginPage enterPassword(String password) {
 		this.passwordFld.sendKeys(password);
 		return this;
 	}
 
-	public LoginPage enterUsername(String username) {
+	private LoginPage enterUsername(String username) {
 		this.usernameFld.sendKeys(username);
 		return this;
 	}
 
-	public SearchPage login() {
+	private SearchPage login() {
 		this.loginBtn.click();
 		return new SearchPage(getDriver());
 	}

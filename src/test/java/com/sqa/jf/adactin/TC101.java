@@ -84,7 +84,7 @@ public class TC101 {
 
 	@Test(groups = { "firefox", "chrome", "ie" })
 	public void testLogin() {
-		Assert.assertTrue(new LoginPage(this.driver).enterUsername("SQABCMar21")
-				.enterPassword("sqaadmin2016").login().hasWelcomeMsg());
+		Assert.assertTrue(LoginPage.logInToAdactin("SQABCMar21", "sqaadmin2016")
+				.hasWelcomeMsg());
 	}
 }

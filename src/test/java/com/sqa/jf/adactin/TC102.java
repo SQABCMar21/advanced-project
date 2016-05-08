@@ -65,21 +65,16 @@ public class TC102 {
 		System.out.println("Check-in: " + checkIn + "Check-out: " + checkOut);
 		// Login:
 		if (this.searchPage == null) {
-			this.searchPage = new LoginPage(driver).enterUsername(username)
-					.enterPassword(password).login();
+			this.searchPage = LoginPage.logInToAdactin(username, password);
 		} else {
 			this.searchPage.getDriver()
 					.get(DefaultPage.getBaseURL() + "/SearchHotel.php");
 		}
 		System.out.println("Enter Information: ");
 		// Enter Information
-		this.searchPage.chooseLocation(location).chooseHotel(hotel)
-				.chooseRoomType(roomType).chooseNumOfRooms(numRooms)
-				.chooseCheckInDate(checkIn).chooseCheckOutDate(checkOut)
-				.chooseNumAdultsInRoom(adultsInRoom)
-				.chooseNumChildrenInRoom(childrenInRoom)
-				// Submit
-				.submit();
+		SearchPage.selectSearchHotelOptions(this.searchPage, location, hotel,
+				roomType, numRooms, checkIn, adultsInRoom, childrenInRoom,
+				checkOut);
 		// Checkout if actual is same as expected results
 		actualResults = !this.searchPage.hasCheckInErrorMessage();
 		Assert.assertEquals(actualResults, expectedResults);
